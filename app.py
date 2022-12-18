@@ -1,4 +1,8 @@
 from flask import Flask, render_template, url_for, session,redirect,request, flash
+import os
+from peewee import *
+from playhouse.db_url import connect
+from playhouse.mysql_ext import MySQLConnectorDatabase
 app = Flask (__name__)
 app.secret_key = "secret_key"
 @app.route ("/index")
@@ -40,5 +44,12 @@ def login():
          return redirect(url_for('profile',username=session['userLogged']))
      return render_template('login.html', title="Авторизация")
 
+
+conn = MySQLDatabase('kp.sql')
+class BaseModel(Model):
+    """A base model that will use our MySQL database"""
+    class Meta:
+        database = conn
+database = MySQLConnectorDatabase('kp', host='localhost', user='root')
 if __name__ == "__main__":
     app.run(debug=True)
