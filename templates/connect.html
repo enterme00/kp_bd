@@ -1,8 +1,14 @@
+
+
+
+
 {% extends 'base.html'%}
 
 
 {%block content%}
 <div class="connects">
+
+
   <p> Есть вопросы? Отпрвьте их нам: </p>
   {%for cat, msg in get_flashed_messages(True)%}
     <div class="flash {{cat}}">{{msg}}</div>
@@ -17,10 +23,9 @@
 <div class="mb-3">
   <label for="exampleFormControlTextarea1" class="form-label ">Введите сообщение...</label>
 <textarea class="form-control w-25 h-50" id="exampleFormControlTextarea1" rows="3"></textarea>
-<input class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04" value="Отпрвить">
+<input class="btn btn-secondary" type="submit" id="inputGroupFileAddon04" value="Отпрвить">
 </div>
 </form>
 
-</div>
 
-  {%endblock%}
+</div>  {%endblock%}

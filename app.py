@@ -29,7 +29,6 @@ def connect():
 def pageNotFount(error):
     return render_template('404.html', title="Страница не найдена")
 
-
 @app.route("/profile/<username>")
 def profile(username):
     if 'userLogged' not in session or session ['userLogged'] != username:
@@ -44,12 +43,5 @@ def login():
          return redirect(url_for('profile',username=session['userLogged']))
      return render_template('login.html', title="Авторизация")
 
-
-conn = MySQLDatabase('kp.sql')
-class BaseModel(Model):
-    """A base model that will use our MySQL database"""
-    class Meta:
-        database = conn
-database = MySQLConnectorDatabase('kp', host='localhost', user='root')
 if __name__ == "__main__":
     app.run(debug=True)
