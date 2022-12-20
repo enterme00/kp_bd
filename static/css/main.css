@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 .connects{
   margin-left: 5%
@@ -14,9 +15,18 @@ background: #AEFFC5;
   border: 1px solid #FF4343;
   background: #FF9C9C;
 }
-body{
-  background-color: #D3E3FC;
-}
+
 .con{
-  margin-left: 5px
+  margin-left: 10px
+}
+body{
+  background: #CEFAFF;
+}
+ .slide{
+   margin-left: 50px;
+   margin-right: 50px;
+   margin-top: 50px
+ }
+.text{
+  color: black
 }
