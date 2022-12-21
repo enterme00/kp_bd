@@ -20,7 +20,7 @@ background: #AEFFC5;
   margin-left: 10px
 }
 body{
-  background: #CEFAFF;
+  background: #ECFFF6;
 }
  .slide{
    margin-left: 50px;
@@ -30,3 +30,13 @@ body{
 .text{
   color: black
 }
+.imgsize{
+          width: 800px; /* ширина картинки будет 350px*/
+          height:400px ; /* высота картинки будет 350px*/
+             margin-left: 5%
+      }
+        .imgsize1{
+                width: 800px; /* ширина картинки будет 350px*/
+                height:600px ; /* высота картинки будет 350px*/
+                   margin-left: 5%
+            }
