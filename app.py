@@ -3,6 +3,7 @@ import os
 from peewee import *
 from playhouse.db_url import connect
 from playhouse.mysql_ext import MySQLConnectorDatabase
+from zapros import *
 app = Flask (__name__)
 app.secret_key = "secret_key"
 @app.route ("/index")
@@ -38,7 +39,7 @@ def profile(username):
 def login():
      if 'userLogged' in session:
          return redirect(url_for('profile',username=session['userLogged']))
-     elif request.method=='POST' and request.form['username']== "suicidalsun@gmail.com" and request.form['psw']=="123":
+     elif request.method=='POST' and request.form['username' ]== 'Sotrudnik.email' and request.form['psw']=='Sotrudnik.parol':
          session['userLogged']=request.form['username']
          return redirect(url_for('profile',username=session['userLogged']))
      return render_template('login.html', title="Авторизация")
