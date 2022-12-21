@@ -2,7 +2,37 @@
         <body>
 
           {%block content%}
-          <p> Содержимое страницы "О сайте"</p>
-          
+          <div class="accordion accordion-flush w-75 h-75 connects1" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        Сайт службы "Одно окно"
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Сайт создан для структурирования информации для обычных граждан и упрощения работы сотрудников при работе с обращениями граждан по административным процедурам.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        Программное обеспечение
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Программа была разработана на Windows 8.1  с помощью таких утилит как: редактор кода "Atom", язык программирования Python 3.10, а также такие его пакеты как flask и peewee. Для проектировки базы данных была выбранна утилита MySQL Workbench</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+        О разработчике:
+      </button>
+    </h2>
+    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Проект был разработан и реализован Каранкевич Яной, учащейся 23-П группы Бобруйского аграно-экономического колледжа по специальности: "техник-программист" в качесве курсовго проекта и индивидуальной работы</div>
+    </div>
+  </div>
+</div>
             {%endblock%}
 </body>

@@ -32,7 +32,7 @@ def pageNotFount(error):
 @app.route("/profile/<username>")
 def profile(username):
     if 'userLogged' not in session or session ['userLogged'] != username:
-        abort(401)
+        return render_template('404.html')
     return f"Профиль пользователя:{username}"
 @app.route("/login", methods=["POST", "GET"])
 def login():
