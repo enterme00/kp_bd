@@ -33,9 +33,8 @@ def pageNotFount(error):
 @app.route("/profile/<username>")
 def profile(username):
     if 'userLogged' not in session or session ['userLogged'] != username:
-        flash ("Неверные данные. Повторите попытку", category='error')
         return render_template('login.html')
-    return f"Профиль пользователя:{username}"
+    return f"{username}"
 
 @app.route("/login", methods=["POST", "GET"])
 def login():
