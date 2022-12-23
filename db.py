@@ -7,7 +7,7 @@ class UnknownField(object):
 
 class BaseModel(Model):
     class Meta:
-        database = database
+        database = mysql_db
 
 class DokDlProcedury(BaseModel):
     id_dokument = AutoField()
