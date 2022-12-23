@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {%block content%}
+  {%for cat, msg in get_flashed_messages(True)%}
 <div class="connects">
 <form action="/login" method="post">
   <div class="mb-3">

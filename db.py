@@ -44,8 +44,7 @@ class PravAkty(BaseModel):
         table_name = 'prav_akty'
 
 class Procedura(BaseModel):
-    id_akt = ForeignKeyField(column_name='id_akt', field='id_akt', model=PravAkt
-y, null=True)
+    id_akt = ForeignKeyField(column_name='id_akt', field='id_akt', model=PravAkty, null=True)
     idprocedura = AutoField()
     kategory = CharField()
     naimenovanie = CharField()
@@ -70,12 +69,9 @@ class Sotrudnik(BaseModel):
 
 class Priem(BaseModel):
     data = DateField()
-    id_gragdanin = ForeignKeyField(column_name='id_gragdanin', field='idgragdani
-n', model=Gragdanin)
-    id_prosedura = ForeignKeyField(column_name='id_prosedura', field='idprocedur
-a', model=Procedura)
-    id_sotrudnik = ForeignKeyField(column_name='id_sotrudnik', field='idsotrudni
-k', model=Sotrudnik)
+    id_gragdanin = ForeignKeyField(column_name='id_gragdanin', field='idgragdanin', model=Gragdanin)
+    id_prosedura = ForeignKeyField(column_name='id_prosedura', field='idprocedura', model=Procedura)
+    id_sotrudnik = ForeignKeyField(column_name='id_sotrudnik', field='idsotrudnik', model=Sotrudnik)
     idpriem = AutoField()
     rechenie = CharField()
     time = TimeField()
@@ -86,11 +82,9 @@ k', model=Sotrudnik)
 
 class Zapros(BaseModel):
     data = DateField()
-    id_priem = ForeignKeyField(column_name='id_priem', field='idpriem', model=Pr
-iem)
+    id_priem = ForeignKeyField(column_name='id_priem', field='idpriem', model=Priem)
     idzapros = IntegerField()
-    organistiya_idorganistiya = ForeignKeyField(column_name='organistiya_idorgan
-istiya', field='idorganistiya', model=Organistiya)
+    organistiya_idorganistiya = ForeignKeyField(column_name='organistiya_idorganistiya', field='idorganistiya', model=Organistiya)
     text = CharField()
 
     class Meta:
@@ -102,8 +96,7 @@ istiya', field='idorganistiya', model=Organistiya)
 
 class Otvet(BaseModel):
     data = DateField()
-    id_zapros = ForeignKeyField(column_name='id_zapros', field='idzapros', model
-=Zapros)
+    id_zapros = ForeignKeyField(column_name='id_zapros', field='idzapros', model=Zapros)
     idotvet = AutoField()
     text = CharField()
 
@@ -111,10 +104,8 @@ class Otvet(BaseModel):
         table_name = 'otvet'
 
 class ProceduryDokumenty(BaseModel):
-    id_dokumenta = ForeignKeyField(column_name='id_dokumenta', field='id_dokumen
-t', model=DokDlProcedury)
-    id_procedury = ForeignKeyField(column_name='id_procedury', field='idprocedur
-a', model=Procedura)
+    id_dokumenta = ForeignKeyField(column_name='id_dokumenta', field='id_dokument', model=DokDlProcedury)
+    id_procedury = ForeignKeyField(column_name='id_procedury', field='idprocedura', model=Procedura)
     idprocedury_dokumenty = AutoField()
 
     class Meta:
@@ -128,12 +119,9 @@ class Spravka(BaseModel):
         table_name = 'spravka'
 
 class SpravkaGragdanin(BaseModel):
-    id_gragdanin = ForeignKeyField(column_name='id_gragdanin', field='idgragdani
-n', model=Gragdanin)
-    id_sotrudnika = ForeignKeyField(column_name='id_sotrudnika', field='idsotrud
-nik', model=Sotrudnik)
-    id_spravka = ForeignKeyField(column_name='id_spravka', field='idspravka', mo
-del=Spravka)
+    id_gragdanin = ForeignKeyField(column_name='id_gragdanin', field='idgragdanin', model=Gragdanin)
+    id_sotrudnika = ForeignKeyField(column_name='id_sotrudnika', field='idsotrudnik', model=Sotrudnik)
+    id_spravka = ForeignKeyField(column_name='id_spravka', field='idspravka', model=Spravka)
     idspravka_gragdanin = AutoField()
 
     class Meta:
