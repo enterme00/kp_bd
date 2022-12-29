@@ -9,7 +9,7 @@ app.secret_key = "secret_key"
 @app.route ("/index")
 def index():
     print(url_for('index'))
-    return render_template('index.html', title="Главная")
+    return render_template('index.html')
 
 @app.route("/about")
 def about():
@@ -30,20 +30,31 @@ def connect():
 def pageNotFount(error):
     return render_template('404.html', title="Страница не найдена")
 
-@app.route("/profile/<username>")
-def profile(username):
-    if 'userLogged' not in session or session ['userLogged'] != username:
-        return render_template('login.html')
-    return f"{username}"
 
-@app.route("/login", methods=["POST", "GET"])
+@app.route('/logout')
+def logout():
+    session['sotrudniki'] = None
+    return redirect('/')
+
+@app.route('/login', methods=['get','post'])
 def login():
-     if 'userLogged' in session:
-         return redirect(url_for('profile',username=session['userLogged']))
-     elif request.method=='POST' and request.form['username' ]== 'Sotrudnik.email' and request.form['psw']=='Sotrudnik.parol':
-         session['userLogged']=request.form['username']
-         return redirect(url_for('profile',username=session['userLogged']))
-     return render_template('login.html', title="Авторизация")
+    res= request.form
+    sotrudniki= sotrudnikVxod(res.get('email'),res.get ('parol'))
+    if sotrudniki:
+        session['sotrudniki']=sotrudniki
+        return redirect('/login')
+    else:
+        return redirect ('/sotrudnik')
 
+@app.route('/sotrudnik', methods=['post','get'])
+def sotrudnik():
+    res= request.form
+    dann=sotridniki_dann(res.get('imya'),res.('id'))
+    if 'sotrudniki' in session:
+        session['sotrudniki'] = dann  # чтение и обновление данных сессии
+    else:
+        session['sotrudniki'] = 1
+        return format(session('sotrudniki'))
+    return render_template('sotrudnik.html', title="Добро пожаловать!")
 if __name__ == "__main__":
     app.run(debug=True)
