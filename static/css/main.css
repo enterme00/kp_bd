@@ -2,10 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 .connects{
-  margin-left: 5%
+  margin-left: 5%;
 }
 .flash{ padding: 10px}
 .flash.success {border: 1px solid #21DB56;

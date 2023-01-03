@@ -58,6 +58,14 @@ def inform():
 def obyav():
     print(url_for('obyav'))
     return render_template('obyav.html', title = "Объявления:")
+@app.route ('/priem')
+def priem():
+    print(url_for('priem'))
+    return render_template('priem.html', title = "Заполните данные:")
+@app.route ('/priem2')
+def priem2():
+    print(url_for('priem2'))
+    return render_template('priem2.html', title = "Заполните данные:")
 
 if __name__ == "__main__":
     app.run(debug=True)

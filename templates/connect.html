@@ -1,8 +1,6 @@
 {% extends 'base.html'%}
 {%block content%}
 <div class="connects">
-
-
   <p> Есть вопросы? Отпрвьте их нам: </p>
   {%for cat, msg in get_flashed_messages(True)%}
     <div class="flash {{cat}}">{{msg}}</div>
