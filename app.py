@@ -30,31 +30,34 @@ def connect():
 def pageNotFount(error):
     return render_template('404.html', title="Страница не найдена")
 
-
-@app.route('/logout')
-def logout():
-    session['sotrudniki'] = None
-    return redirect('/')
-
-@app.route('/login', methods=['get','post'])
+@app.route('/login', methods=['POST','GET'])
 def login():
     res= request.form
     sotrudniki= sotrudnikVxod(res.get('email'),res.get ('parol'))
-    if sotrudniki:
+    if Sotrudnik.email == 'email' & Sotrudnik.parol=='parol':
         session['sotrudniki']=sotrudniki
-        return redirect('/login')
-    else:
         return redirect ('/sotrudnik')
-
-@app.route('/sotrudnik', methods=['post','get'])
-def sotrudnik():
-    res= request.form
-    dann=sotridniki_dann(res.get('imya'),res.('id'))
-    if 'sotrudniki' in session:
-        session['sotrudniki'] = dann  # чтение и обновление данных сессии
     else:
-        session['sotrudniki'] = 1
-        return format(session('sotrudniki'))
+        return redirect ('/login')
+
+@app.route('/logout')
+def logout():
+    session.pop('sotrudniki',None)
+    return render_template('index.html')
+
+
+@app.route('/sotrudnik')
+def sotrudnik():
     return render_template('sotrudnik.html', title="Добро пожаловать!")
+
+@app.route ('/inform')
+def inform():
+    print(url_for('inform'))
+    return render_template('inform.html', title = "Полезная информация:")
+@app.route ('/obyav')
+def obyav():
+    print(url_for('obyav'))
+    return render_template('obyav.html', title = "Объявления:")
+
 if __name__ == "__main__":
     app.run(debug=True)
