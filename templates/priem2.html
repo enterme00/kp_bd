@@ -1,60 +1,80 @@
-{% extends 'base.html'%}
-{%block content%}
+{% extends 'base.html'%} {%block content%}
 <div class="container text-left connects">
   <div class="row">
     <div class="col">
-<p class="fw-bold fs-3">Запросы:</p>
+      <p class="fw-bold fs-3">Запросы:</p>
       {%for cat, msg in get_flashed_messages(True)%}
-        <div class="flash {{cat}}">{{msg}}</div>
+      <div class="flash {{cat}}">{{msg}}</div>
       {%endfor%}
-  <form  action="/priem2" method="post" class="form-contact">
-    <label for="label_priem_im" class="form-label">Номер приема:</label>
-    <input class="form-control w-50 h-50" name="imya" type="text"  placeholder="84"><br>
-  <label for="exampleFormControlTextarea1" class="form-label ">Выберите организацию:</label><br>
-  <div class="col-sm-3 ">
-     <label class="visually-hidden" for="specificSizeSelect">Организации:</label>
-     <select class="form-select" id="specificSizeSelect">
-       <option selected>...</option>
-       <option value="1">Один</option>
-       <option value="2">Два</option>
-       <option value="3">Три</option>
-     </select>
-   </div><br>
-  <label for="exampleFormControlTextarea" class="form-label ">Введите сообщение:</label><br>
-<textarea class="form-control w-50 h-50" name="sms" id="exampleFormControlTextarea1" rows="3"></textarea><br>
-<label for="label_priem_tel" class="form-label">Дата:</label>
-  <input id="datetime" type="datetime-local"> <br><br>
-<label for="exampleFormControlTextarea1" class="form-label ">Нажмите "Отправить" для отправки запроса</label> <br>
-<input class="btn btn-primary" type="submit" id="inputGroupFileAddon04" value="Отпрвить">
-  </form>
+      <form action="/endPriem" method="post" class="form-contact">
+        <p class="fw-bold fs-3">Номер приема: {{prid}}</p>
+        <br />
+        <label for="exampleFormControlTextarea1" class="form-label"
+          >Выберите организацию:</label
+        ><br />
+        <div class="col-sm-3">
+          <label class="visually-hidden" for="specificSizeSelect"
+            >Организации:</label
+          >
+          <select class="form-select" id="specificSizeSelect" name="org">
+            {% for org in organiz %}
+            <option value="{{org.idorganistiya}}">{{org.naimenovanie}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <br />
+        <label for="exampleFormControlTextarea" class="form-label"
+          >Введите сообщение:</label
+        ><br />
+        <textarea
+          class="form-control w-50 h-50"
+          name="text"
+          id="exampleFormControlTextarea1"
+          rows="3"
+        ></textarea
+        ><br />
+        <label for="label_priem_tel" class="form-label" >Дата:</label>
+        <input style="display: none;" name="prid" type="number" value="{{prid}}">
+        <input id="datetime" type="date" name="date"/> <br /><br />
+        <label for="exampleFormControlTextarea1" class="form-label"
+          >Нажмите "Отправить" для отправки запроса</label
+        >
+        <br />
+        <input
+          class="btn btn-primary"
+          type="submit"
+          id="inputGroupFileAddon04"
+          value="Отпрвить"
+        />
+      </form>
     </div>
-<div class="col">
-  <p class="fw-bold fs-3">Ответы:</p>
-  <div class="table-responsive">
-  <table class="table table-hover table-bordered table-scrollable">
-    <thead class="table-light">
-      <tr>
-        <th scope="col">№</th>
-        <th scope="col">№ запроса</th>
-        <th scope="col">Дата</th>
-        <th scope="col">Ответ</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for prie in priem %}
-      <tr>
-          <th scope="row">{{prie.idpriem}}</th>
-          <th scope="row">{{prie.id_prosedura}}</th>
-          <th scope="row">{{prie.id_gragdanin.familiya}} {{prie.id_gragdanin.imya|first}}. {{prie.id_gragdanin.otchestvo|first}}.</th>
-          <th scope="row">{{prie.data}}</th>
-          <th scope="row">{{prie.time}}</th>
-          <th scope="row">{{prie.rechenie}}</th>
-          <th scope="row">{{prie.id_sotrudnik.familiya}} {{prie.id_sotrudnik.imya|first}}. {{prie.id_sotrudnik.otchestbo|first}}.</th>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  </div>
-  </div>
+    <div class="col">
+      <p class="fw-bold fs-3">Ответы:</p>
+      <div class="table-responsive">
+        <table class="table table-hover table-bordered table-scrollable">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">№</th>
+              <th scope="col">Организация</th>
+              <th scope="col">Текст запроса</th>
+              <th scope="col">Дата</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for zap in zapr %}
+            <tr>
+              <th scope="row">{{zap.idzapros}}</th>
+              <th scope="row">{{zap.organistiya_idorganistiya.naimenovanie}}</th>
+              <th scope="row">{{zap.text}}</th>
+              <th scope="row">{{zap.data}}</th>
+              
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-{%endblock%}
+    {%endblock%}
+  </div>
+</div>
