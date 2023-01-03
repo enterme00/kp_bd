@@ -1,3 +1,30 @@
 {% extends 'base.html'%}
 {%block content%}
+<div class="container text-left connects">
+  <div class="row">
+    <div class="col">
+<p class="fw-bold fs-3">Запросы:</p>
+      {%for cat, msg in get_flashed_messages(True)%}
+        <div class="flash {{cat}}">{{msg}}</div>
+      {%endfor%}
+  <form  action="/priem2" method="post" class="form-contact">
+  <label for="exampleFormControlTextarea1" class="form-label ">Выберите организацию:</label><br>
+  <div class="col-sm-3 ">
+     <label class="visually-hidden" for="specificSizeSelect">Организации:</label>
+     <select class="form-select" id="specificSizeSelect">
+       <option selected>...</option>
+       <option value="1">Один</option>
+       <option value="2">Два</option>
+       <option value="3">Три</option>
+     </select>
+   </div><br>
+  <label for="exampleFormControlTextarea" class="form-label ">Введите сообщение:</label><br>
+<textarea class="form-control w-50 h-50" name="sms" id="exampleFormControlTextarea1" rows="3"></textarea><br>
+<label for="label_priem_tel" class="form-label">Дата:</label>
+  <input id="datetime" type="datetime-local"> <br><br>
+<label for="exampleFormControlTextarea1" class="form-label ">Нажмите "Отправить" для отправки запроса</label> <br>
+<input class="btn btn-primary" type="submit" id="inputGroupFileAddon04" value="Отпрвить">
+  </form>
+</div>
+<div class="col">
 {%endblock%}

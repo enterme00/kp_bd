@@ -86,10 +86,15 @@ def priem():
     return render_template('priem.html', title="Заполните данные:")
 
 
-@app.route('/priem2')
+@app.route('/priem2', methods=["POST", "GET"])
 def priem2():
+    if request.method == 'POST':
+        if len(request.form.get("sms")) > 10:
+            flash("Запрос отправлен успешно.", category='success')
+        else:
+            flash("Ошибка отправки. Повторите попытку", category='error')
     print(url_for('priem2'))
-    return render_template('priem2.html', title="Заполните данные:")
+    return render_template('priem2.html')
 
 
 if __name__ == "__main__":
