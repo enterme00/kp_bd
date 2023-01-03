@@ -6,6 +6,13 @@
 .connects{
   margin-left: 5%;
 }
+.connects1{
+  margin-left: 10%;
+}
+
+.block-left{width:50%;height:800px;overflow:auto;float:left;}
+.block-right
+{width:50%;height:800px;overflow:auto; float:right;}
 .flash{ padding: 10px}
 .flash.success {border: 1px solid #21DB56;
 background: #AEFFC5;
