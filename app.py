@@ -65,10 +65,7 @@ def logout():
 def sotrudnik():
     if session.get('sotrudniki') == None:
         return redirect('/login')
-    # for i in Priem.select():
-
-    #     pprint(model_to_dict(i))
-    return render_template('sotrudnik.html', title="Добро пожаловать!", priem=Priem.select())
+    return render_template('sotrudnik.html', title="Добро пожаловать!", priem=Priem.select(), sotrud=session['sotrudniki'])
 
 
 @app.route('/inform')
@@ -114,12 +111,31 @@ def priem():
     return render_template('priem.html', title="Заполните данные:", procedures=Procedura.select())
 
 
-@app.route('/endPriem', methods=["POST"])
-def endPriem():
+@app.route('/setZapros', methods=["POST"])
+def setZapros():
     prid = request.form['prid']
     Zapros.create(id_priem=request.form['prid'], organistiya_idorganistiya=request.form['org'],
                   text=request.form['text'], data=request.form['date'])
     return redirect(f'/priem2/{prid}')
+
+
+@app.route('/endPriem', methods=["POST"])
+def endPriem():
+    print(request.form)
+    priem = Priem.get(int(request.form['prid']))
+    print(priem)
+    stat = request.form['status']
+    print(priem.rechenie)
+    if stat =='Передать в обработку':
+        priem.rechenie = 'Передано в обработку'
+    elif stat == 'Отказать':
+        priem.rechenie = 'Отказать'
+    print(priem.rechenie)
+        
+    priem.save()
+    print(priem.rechenie)
+    return redirect('/sotrudnik')
+    
 
 
 @app.route('/priem2/<priemid>', methods=["POST", "GET"])
@@ -129,7 +145,7 @@ def priem2(priemid):
             flash("Запрос отправлен успешно.", category='success')
         else:
             flash("Ошибка отправки. Повторите попытку", category='error')
-    return render_template('priem2.html', title="Заполните данные:", prid=priemid, organiz=Organistiya.select(),zapr=Zapros.select().where(Zapros.id_priem ==priemid))
+    return render_template('priem2.html', title="Заполните данные:", prid=priemid, organiz=Organistiya.select(), zapr=Zapros.select().where(Zapros.id_priem == int(priemid)))
 
 
 if __name__ == "__main__":

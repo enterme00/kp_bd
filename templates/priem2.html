@@ -6,13 +6,13 @@
       {%for cat, msg in get_flashed_messages(True)%}
       <div class="flash {{cat}}">{{msg}}</div>
       {%endfor%}
-      <form action="/endPriem" method="post" class="form-contact">
+      <form action="/setZapros" method="post" class="form-contact">
         <p class="fw-bold fs-3">Номер приема: {{prid}}</p>
         <br />
         <label for="exampleFormControlTextarea1" class="form-label"
           >Выберите организацию:</label
         ><br />
-        <div class="col-sm-3">
+        <div class="col-sm-3 w-50">
           <label class="visually-hidden" for="specificSizeSelect"
             >Организации:</label
           >
@@ -33,9 +33,20 @@
           rows="3"
         ></textarea
         ><br />
-        <label for="label_priem_tel" class="form-label" >Дата:</label>
-        <input style="display: none;" name="prid" type="number" value="{{prid}}">
-        <input id="datetime" type="date" name="date"/> <br /><br />
+        <label for="label_priem_tel" class="form-label">Дата:</label>
+        <input
+          style="display: none"
+          name="prid"
+          type="number"
+          value="{{prid}}"
+        />
+        <input
+          class="form-control w-50"
+          id="datetime"
+          type="date"
+          name="date"
+        />
+        <br /><br />
         <label for="exampleFormControlTextarea1" class="form-label"
           >Нажмите "Отправить" для отправки запроса</label
         >
@@ -64,17 +75,33 @@
             {% for zap in zapr %}
             <tr>
               <th scope="row">{{zap.idzapros}}</th>
-              <th scope="row">{{zap.organistiya_idorganistiya.naimenovanie}}</th>
+              <th scope="row">
+                {{zap.organistiya_idorganistiya.naimenovanie}}
+              </th>
               <th scope="row">{{zap.text}}</th>
               <th scope="row">{{zap.data}}</th>
-              
             </tr>
             {% endfor %}
           </tbody>
         </table>
       </div>
     </div>
-
-    {%endblock%}
+  </div>
+  <div class="riasd">
+    <form action="/endPriem" method="POST">
+      <div class="btn-group" role="group">
+        <input type="submit" name="status" value="Отказать" class="btn btn-danger"></input>
+        <input type="submit" name="status" value="Выйти и ожидать ответ" class="btn btn-warning"></input>
+        <input type="submit" name="status" value="Передать в обработку" class="btn btn-success"></input>
+        <input
+          style="display: none"
+          name="prid"
+          type="number"
+          value="{{prid}}"
+        />
+      </div>
+    </form>
   </div>
 </div>
+
+{%endblock%}

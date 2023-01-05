@@ -1,7 +1,10 @@
 {% extends 'base.html'%}
 {%block content%}
 <h1> Данные сотрудника:  </h1>
-
+<span class="fw-bold fs-5">{{sotrud.dolgnost}}
+    <br>
+{{sotrud.familiya}} {{sotrud.imya|first}}. {{sotrud.otchestbo|first}}.</span> 
+<br>
 <a href="/priem" type="button" class= "btn btn-primary"   >Начать приём
 </a>
 

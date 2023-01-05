@@ -7,7 +7,11 @@
   margin-left: 5%;
 }
 
-
+.riasd{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
 .block-left{width:50%;height:800px;overflow:auto;float:left;}
 .block-right
 {width:50%;height:800px;overflow:auto; float:right;}
