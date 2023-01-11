@@ -1,0 +1,93 @@
+{% extends 'base.html'%}
+{%block content%}
+<div class="connects">
+
+
+<!-- Кнопка-триггер модального окна -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Добавить новую справку
+</button>
+
+<!-- Модальное окно -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Создать справку:</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <p class="fw-bold fs-3"></p>
+      <label for="label_priem_im" class="form-label">Введите название справки:</label>
+      <input
+        class="form-control w-50 h-50"
+        name="Name"
+        type="text"
+        placeholder="Ввод.."
+        </input>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+      <input type="submit" class="btn btn-primary"  value="Заполнить">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <p class="fw-bold fs-3">Выдать справку:</p>
+
+      <div class="mb-3">
+        <label for="label_spr_fm" class="form-label">Фамилия: </label>
+        <input
+          class="form-control w-50 h-50"
+          name="familiya"
+          type="text"
+          placeholder="Иванов"
+        />
+        <label for="label_spr_im" class="form-label">Имя:</label>
+        <input
+          class="form-control w-50 h-50"
+          name="imya"
+          type="text"
+          placeholder="Иван"
+        />
+        <label for="label_spr_ot" class="form-label">Отчество:</label>
+        <input
+          class="form-control w-50 h-50"
+          name="otchestvo"
+          type="text"
+          placeholder="Иванович"
+        />
+        <label for="label_spr_tel" class="form-label"
+          >Мобильный телефон:</label
+        >
+        <input
+          class="form-control w-50 h-50"
+          name="telefon"
+          type="tel"
+          placeholder="+375 (00) 000-00-00"
+
+        />
+        <label for="label_spr_email" class="form-label"
+          >Адрес электронной почты:</label
+        >
+        <input
+          type="email"
+          class="form-control w-50 h-50"
+          id="exampleFormControlInput1"
+          name="email"
+          placeholder="name@example.com"
+        />
+
+    <label for="label_priem_im" class="form-label">Выберете тип справки:</label>
+  <select class="form-select w-50" id="specificSizeSelect" name="sprav">
+    <option selected></option>
+    {% for spr in sprav %}
+    <option value="{{sprav.idspravka}}">{{spr.name}} </option>
+    {% endfor %}
+  </select>
+</div>
+
+{%endblock%}
