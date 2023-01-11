@@ -33,8 +33,8 @@ def connect():
     print(url_for('connect'))
     return render_template('connect.html', title="Обратная связь")
 
-# @app.errorhandler(404)
-# def pageNotFount(error):
+ #@app.errorhandler (404)
+ #def pageNotFount(error):
 #     return render_template('404.html', title="Страница не найдена")
 
 
@@ -130,12 +130,14 @@ def endPriem():
         priem.rechenie = 'Передано в обработку'
     elif stat == 'Отказать':
         priem.rechenie = 'Отказать'
+    elif stat == 'Выйти и ожидать ответ':
+        priem.rechenie = 'Ожидается ответ'
     print(priem.rechenie)
-        
+
     priem.save()
     print(priem.rechenie)
     return redirect('/sotrudnik')
-    
+
 
 
 @app.route('/priem2/<priemid>', methods=["POST", "GET"])
