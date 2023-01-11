@@ -147,8 +147,20 @@ def priem2(priemid):
             flash("Запрос отправлен успешно.", category='success')
         else:
             flash("Ошибка отправки. Повторите попытку", category='error')
-    return render_template('priem2.html', title="Заполните данные:", prid=priemid, organiz=Organistiya.select(), zapr=Zapros.select().where(Zapros.id_priem == int(priemid)))
+    return render_template('priem2.html', title=f'ЯВНАЯ ВЫБОРКА запросов для приёма №{priemid}', prid=priemid, organiz=Organistiya.select(), zapr=Zapros.select().where(Zapros.id_priem == int(priemid)))
 
+
+@app.route('/priemEdit/<int:priemid>',methods=['POST'] )
+def priemEdit(priemid):
+    if request.form['status']=='Удалить':
+        for i in Zapros.select().where(Zapros.id_priem ==priemid):
+            i.delete_instance()
+        Priem.get_by_id(priemid).delete_instance()
+        return redirect('/sotrudnik')
+    else:
+        return redirect(f'/priem2/{priemid}')
+        
+    
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -9,27 +9,31 @@
 <table class="table table-hover table-bordered table-scrollable">
   <thead class="table-light">
     <tr>
-      <th scope="col">№</th>
       <th scope="col">№ процедуры</th>
       <th scope="col">ФИО гражданина</th>
       <th scope="col">Дата</th>
       <th scope="col">Время</th>
       <th scope="col">Решение</th>
       <th scope="col">ФИО специалиста</th>
+      <th scope="col">Дейсвие</th>
+
     </tr>
   </thead>
   <tbody>
     {% for prie in priem %}
     <tr>
-        <th scope="row">{{prie.idpriem}}</th>
         <th scope="row">{{prie.id_prosedura}}</th>
-
         <th scope="row">{{prie.id_gragdanin.familiya}} {{prie.id_gragdanin.imya|first}}. {{prie.id_gragdanin.otchestvo|first}}.</th>
         <th scope="row">{{prie.data}}</th>
         <th scope="row">{{prie.time}}</th>
         <th scope="row">{{prie.rechenie}}</th>
         <th scope="row">{{prie.id_sotrudnik.familiya}} {{prie.id_sotrudnik.imya|first}}. {{prie.id_sotrudnik.otchestbo|first}}.</th>
-
+        <th scope="row">
+            <form action="/priemEdit/{{ prie.idpriem }}" method="post">
+                <input type="submit" name="status" value="Удалить" class="btn btn-danger"> </input>
+                <input type="submit" name="status" value="Изменить" class="btn btn-warning"> </input>
+            </form>
+        </th>
 
     </tr>
     {% endfor %}
