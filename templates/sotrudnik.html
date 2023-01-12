@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 {%block content%}
-<h1> Данные сотрудника:  </h1>
+<h1> Данные сотрудника: {{sotrud.familiya}} {{sotrud.imya|first}}. {{sotrud.otchestbo|first}}.</h1>
 <div class="container text-left connects">
   <div class="row">
     <div class="col">

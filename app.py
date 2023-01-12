@@ -33,8 +33,8 @@ def connect():
     print(url_for('connect'))
     return render_template('connect.html', title="Обратная связь")
 
- #@app.errorhandler (404)
- #def pageNotFount(error):
+ # @app.errorhandler (404)
+ # def pageNotFount(error):
 #     return render_template('404.html', title="Страница не найдена")
 
 
@@ -126,7 +126,7 @@ def endPriem():
     print(priem)
     stat = request.form['status']
     print(priem.rechenie)
-    if stat =='Передать в обработку':
+    if stat == 'Передать в обработку':
         priem.rechenie = 'Передано в обработку'
     elif stat == 'Отказать':
         priem.rechenie = 'Отказать'
@@ -139,7 +139,6 @@ def endPriem():
     return redirect('/sotrudnik')
 
 
-
 @app.route('/priem2/<priemid>', methods=["POST", "GET"])
 def priem2(priemid):
     if request.method == 'POST':
@@ -150,15 +149,16 @@ def priem2(priemid):
     return render_template('priem2.html', title=f'Запросы для приёма №{priemid}', prid=priemid, organiz=Organistiya.select(), zapr=Zapros.select().where(Zapros.id_priem == int(priemid)))
 
 
-@app.route('/priemEdit/<int:priemid>',methods=['POST'] )
+@app.route('/priemEdit/<int:priemid>', methods=['POST'])
 def priemEdit(priemid):
-    if request.form['status']=='Удалить':
-        for i in Zapros.select().where(Zapros.id_priem ==priemid):
+    if request.form['status'] == 'Удалить':
+        for i in Zapros.select().where(Zapros.id_priem == priemid):
             i.delete_instance()
         Priem.get_by_id(priemid).delete_instance()
         return redirect('/sotrudnik')
     else:
         return redirect(f'/priem2/{priemid}')
+
 
 @app.route('/grSpravka')
 def grSpravka():
@@ -170,13 +170,35 @@ def grSpravka():
     )
     return redirect(f'/spravka')
 
-@app.route('/dopSpravka')
-def dopSpravka():
 
+@app.route('/dopSpravka', methods=['POST'])
+def dopSpravka():
+    print(request.form)
     Spravka.create(name=request.form['name'])
     return redirect('/spravka')
-@app.route('/spravka')
+
+
+@app.route('/spravka', methods=['POST','GET'])
 def spravka():
-    return render_template('spravka.html', sprav=Spravka.select())
+    if request.method == 'POST':
+        if (request.form['dop']) == 'grSpravka':
+            gra = Gragdanin.create(**(request.form))
+            spr = SpravkaGragdanin.create(
+                id_gragdanin=gra.idgragdanin,
+                id_sotrudnika=session.get('sotrudniki')['idsotrudnik'],
+                id_spravka=request.form.get('sprav')
+            )
+            flash("Сообщение отправлено. Спасибо", category='success')
+        else:
+            
+            flash("Ошибка отправки. Повторите попытку", category='error')
+    return render_template('spravka.html', sprav=Spravka.select(),spravka=SpravkaGragdanin.select())
+
+@app.route('/spravkaDelete/<int:spravkaid>', methods=['POST'])
+def spravkaDelete(spravkaid):
+    if request.form['status'] == 'Удалить':
+        SpravkaGragdanin.get_by_id(spravkaid).delete_instance()
+        return redirect('/spravka')
+
 if __name__ == "__main__":
     app.run(debug=True)
