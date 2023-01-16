@@ -170,6 +170,11 @@ def grSpravka():
     )
     return redirect(f'/spravka')
 
+@app.route('/vSpravka', methods=['POST'])
+def vSpravka():
+    print(request.form)
+    return render_template('spravka.html', sprav=Spravka.select(),spravka=SpravkaGragdanin.select().where(SpravkaGragdanin.id_spravka==int(request.form['sprav'])))
+
 
 @app.route('/dopSpravka', methods=['POST'])
 def dopSpravka():
@@ -189,9 +194,6 @@ def spravka():
                 id_spravka=request.form.get('sprav')
             )
             flash("Сообщение отправлено. Спасибо", category='success')
-        else:
-            
-            flash("Ошибка отправки. Повторите попытку", category='error')
     return render_template('spravka.html', sprav=Spravka.select(),spravka=SpravkaGragdanin.select())
 
 @app.route('/spravkaDelete/<int:spravkaid>', methods=['POST'])
@@ -199,6 +201,12 @@ def spravkaDelete(spravkaid):
     if request.form['status'] == 'Удалить':
         SpravkaGragdanin.get_by_id(spravkaid).delete_instance()
         return redirect('/spravka')
+
+@app.route('/otchetnost')
+def otchetnost():
+    
+    return render_template('otchetnost.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)

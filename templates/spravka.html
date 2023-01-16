@@ -1,7 +1,7 @@
 {% extends 'base.html'%}
 {%block content%}
 <div class="connects">
-   
+
 
     <!-- Кнопка-триггер модального окна -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -36,9 +36,9 @@
     </div>
     <div class="container text-left connects">
         <div class="row ">
-            <div class="col w-30">
+            <div class="col">
     <p class="fw-bold fs-3">Выдать справку:</p>
-    
+
 
     {%for cat, msg in get_flashed_messages(True)%}
     <div class="flash {{cat}} w-50 " >{{msg}}</div>
@@ -61,15 +61,29 @@
             <select class="form-select w-50" id="specificSizeSelect" name="sprav">
                 <option selected></option>
                 {% for spr in sprav %}
-                <option value="{{sprav.idspravka}}">{{spr.name}} </option>
+                <option value="{{spr.idspravka}}">{{spr.name}} </option>
                 {% endfor %}
             </select>
             <input style="display: none" name="dop" type="text" value="grSpravka" />
+            <div class="btn-group-primary" role="group">
+              <a href="/sotrudnik" type="button" class="btn btn-primary">Назад</a>
             <input class="btn btn-primary" type="submit" value="Выдать справку">
+            </div>
         </div>
     </form>
 </div>
-<div class="col ">
+<div class="col-8">
+  <form  action="/vSpravka" method="post">
+  <label for="label_priem_im" class="form-label">Выберете тип справки:</label>
+  <select class="form-select w-50" id="specificSizeSelect" name="sprav">
+      <option selected></option>
+      {% for spr in sprav %}
+      <option value="{{spr.idspravka}}">{{spr.name}} </option>
+      {% endfor %}
+  </select>
+  <input class="btn btn-primary" type="submit" value="Показать">
+</form>
+  <br>
     <div class="table-responsive">
         <table class="table table-hover table-bordered table-scrollable">
           <thead class="table-light">
@@ -95,9 +109,9 @@
                 </th>
             </tr>
             {% endfor %}
-        
-        
-        
+
+
+
           </tbody>
         </table>
         </div>

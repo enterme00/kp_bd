@@ -1,0 +1,62 @@
+{% extends 'base.html'%}
+{%block content%}
+  <p class="fw-bold fs-3">Частота обращений по процедурам:</p>
+<div class="w-25 h-50">
+  <div>
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['1.8', '2.33.1', '2.33.2', '2.33.4', '6.6', '6.7','4.2'],
+        datasets: [{
+          label: '# of Votes',
+          data: [2, 1, 1, 1, 1, 1,2],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+
+  <p class="fw-bold fs-3">Частота обращений по процедурам:</p>
+<div class="w-25 h-50">
+  <div>
+    <canvas id="myChart1"></canvas>
+  </div>
+  <script>
+    const ctx = document.getElementById('myChart1');
+    new Chart(ctx, {
+
+        labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
+        datasets: [
+          {
+            label: 'Dataset 1',
+            data: [1,2,3,4,5],
+            backgroundColor: [],
+          }
+        ]
+      };
+  const config = {
+    type: 'pie',
+    data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top'
+        }}}}
+    </script>
+{%endblock%}
