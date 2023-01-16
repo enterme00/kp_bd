@@ -1,5 +1,5 @@
 from peewee import *
-mysql_db = MySQLDatabase('kp_bd', user='root', password='root', host='localhost', port=3306, charset='utf8mb4')
+mysql_db = MySQLDatabase('kp', user='root', password='root', host='localhost', port=3306, charset='utf8mb4')
 
 class UnknownField(object):
     def __init__(self, *_, **__): pass

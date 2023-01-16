@@ -1,11 +1,13 @@
 {% extends 'base.html'%}
 {%block content%}
+<div class="container text-left connects">
+  <div class="row">
+    <div class="col">
   <p class="fw-bold fs-3">Частота обращений по процедурам:</p>
-<div class="w-25 h-50">
+<div class="w-50 h-50">
   <div>
     <canvas id="myChart"></canvas>
   </div>
-
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
@@ -30,33 +32,36 @@
       }
     });
   </script>
+  <p class="fw-bold fs-3">Самый продуктивный сотрудник:</p>
+  <div class="canvas">
+    <div class="legend">
+      <ul class="caption-list">
+        <li class="caption-item"> Юшкевич Татьяна	Сергеевна	</li>
+        <li class="caption-item">Жукова Светлана	Николаевна</li>
+        <li class="caption-item">Дубовик Анжелика	Дмитриевна</li>
+        <li class="caption-item">Литвина Людмила	Ивановна</li>
+        <li class="caption-item">Красова Алёна	Сергеевна</li>
+        <li class="caption-item">Барсукова Екатерина	Андреевна</li>
+        <li class="caption-item">Рачинская Елена	Эдуардовна</li>
+      </ul>
+    </div>
 
-  <p class="fw-bold fs-3">Частота обращений по процедурам:</p>
-<div class="w-25 h-50">
-  <div>
-    <canvas id="myChart1"></canvas>
+    <svg class="chart" width="500" height="500" viewBox="0 0 50 50">
+      <circle class="unit" r="15.9" cx="50%" cy="50%"></circle>
+      <circle class="unit" r="15.9" cx="50%" cy="50%"></circle>
+      <circle class="unit" r="15.9" cx="50%" cy="50%"></circle>
+      <circle class="unit" r="15.9" cx="50%" cy="50%"></circle>
+      <circle class="unit" r="15.9" cx="50%" cy="50%"></circle>
+      <circle class="unit" r="15.9" cx="50%" cy="50%"></circle>
+      <circle class="unit" r="15.9" cx="50%" cy="50%"></circle>
+    </svg>
   </div>
-  <script>
-    const ctx = document.getElementById('myChart1');
-    new Chart(ctx, {
-
-        labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue'],
-        datasets: [
-          {
-            label: 'Dataset 1',
-            data: [1,2,3,4,5],
-            backgroundColor: [],
-          }
-        ]
-      };
-  const config = {
-    type: 'pie',
-    data: data,
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top'
-        }}}}
-    </script>
-{%endblock%}
+    </div>
+  </div>
+    <div class="col-2"><br><br><br><br><br><br><br><br>
+        <a href="/sotrudnik" type="button" class= "btn btn-primary "   >Вернуться</a> <br><br><br><br><br><br><br><br>
+        <a href="/othet" type="button" class= "btn btn-primary"   >Создать отчет</a>
+  </div>
+</div>
+    </div>
+  {%endblock%}

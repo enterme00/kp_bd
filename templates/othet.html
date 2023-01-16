@@ -1,0 +1,30 @@
+{% extends 'base.html'%}
+{%block content%}
+<form class="/vothet" action="othet.html" method="post">
+<div class="table-responsive">
+<table class="table table-hover table-bordered table-scrollable">
+<thead class="table-light">
+<tr>
+<th scope="col">ФИО специалиста</th>
+<th scope="col">Количество процедур</th>
+
+</tr>
+</thead>
+<tbody>
+{% for prie in query %}
+<tr>
+  <th scope="row">{{prie.id_sotrudnik.familiya}} {{prie.id_sotrudnik.imya|first}}. {{prie.id_sotrudnik.otchestbo|first}}</th>
+  <th scope="row">{{prie.idpriem}}</th>
+</tr>
+{% endfor %}
+{% for pr in query1 %}
+<tr>
+  <th scope="row">Итого:</th>
+  <th scope="row">{{pr.idpriem}}</th>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</form>
+{%endblock%}

@@ -204,9 +204,18 @@ def spravkaDelete(spravkaid):
 
 @app.route('/otchetnost')
 def otchetnost():
-    
     return render_template('otchetnost.html')
+@app.route('/vothet')
+def vothet():
+    return render_template('othet.html', query = Priem.select(Priem.id_sotrudnik,fn.COUNT(Priem.idpriem))
+    .where(Priem.id_sotrudnik.is_null(False))
+    .group_by(Priem.id_sotrudnik)
+    .order_by(Priem.id_sotrudnik),
+    query1= Priem.select(fn.COUNT(Priem.idpriem)))
+@app.route('/othet')
+def othet():
 
+    return redirect('/vothet')
 
 if __name__ == "__main__":
     app.run(debug=True)
