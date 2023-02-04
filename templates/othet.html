@@ -1,7 +1,8 @@
 {% extends 'base.html'%}
 {%block content%}
 <form class="/vothet" action="othet.html" method="post">
-<div class="table-responsive">
+    <p class="fw-bold fs-3 titl">Отчет о количестве проведенных процедур:</p>
+<div class="table-responsive w-75 h-75 connects1">
 <table class="table table-hover table-bordered table-scrollable">
 <thead class="table-light">
 <tr>
@@ -11,6 +12,11 @@
 </tr>
 </thead>
 <tbody>
+  <tr>
+    <th scope="row" colspan="2"><div class="titl">
+
+  Количество проведенных приемов:  </div></th>
+  </tr>
 {% for prie in query %}
 <tr>
   <th scope="row">{{prie.id_sotrudnik.familiya}} {{prie.id_sotrudnik.imya|first}}. {{prie.id_sotrudnik.otchestbo|first}}</th>
@@ -23,8 +29,36 @@
   <th scope="row">{{pr.idpriem}}</th>
 </tr>
 {% endfor %}
+  <tr>
+<th scope="row" colspan="2"><div class="titl">
+Количество проведенных справок:  </div></th>
+</tr>
+{% for spr in query2 %}
+<tr>
+  <th scope="row">{{spr.id_sotrudnika.familiya}} {{spr.id_sotrudnika.imya|first}}. {{spr.id_sotrudnika.otchestbo|first}}</th>
+  <th scope="row">{{spr.id_spravka}}</th>
+</tr>
+{% endfor %}
+{% for spr in query4 %}
+<tr>
+  <th scope="row">Итого:</th>
+  <th scope="row">{{spr.id_spravka}}</th>
+</tr>
+{% endfor %}
+
+
 </tbody>
 </table>
+</div><br><br><br>
+<div class="container text-left connects">
+  <div class="row">
+    <div class="col-8">
+<p class="fw-bold fs-5 connects1 ">Руководитель службы "Одно Окно":</p>
 </div>
+  <div class="col">
+    <p class="fw-bold fs-5 connects1 ">Л. И. Литвина</p>
+    </div>
+    </div>
+    </div>
 </form>
 {%endblock%}
